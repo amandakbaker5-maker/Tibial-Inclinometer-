@@ -5,408 +5,451 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="TibiaAngle">
-<meta name="theme-color" content="#1a1a2e">
-<title>Tibia Inclinometer</title>
+<meta name="apple-mobile-web-app-title" content="InJourney">
+<meta name="theme-color" content="#0f0f1a">
+<title>InJourney – Tibial Inclinometer</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  :root {
-    --bg: #0f0f1a;
-    --surface: #1a1a2e;
-    --card: #16213e;
-    --accent: #00d4aa;
-    --accent-dim: #00a080;
-    --danger: #ff4757;
-    --warn: #ffa502;
-    --text: #ffffff;
-    --text-muted: #8a8fa8;
-    --border: rgba(255,255,255,0.08);
-    --green: #2ed573;
-    --radius: 16px;
-  }
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --card: #16213e;
+  --accent: #00d4aa;
+  --accent-dim: #00a080;
+  --danger: #ff4757;
+  --green: #2ed573;
+  --text: #ffffff;
+  --text-muted: #8a8fa8;
+  --border: rgba(255,255,255,0.08);
+  --radius: 16px;
+}
 
-  html, body {
-    height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    overflow: hidden;
-    touch-action: none;
-  }
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow: hidden;
+  touch-action: none;
+}
 
-  #app {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    height: 100dvh;
-    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
-  }
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  padding: env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0);
+}
 
-  /* ── SCREENS ── */
-  .screen { display: none; flex-direction: column; height: 100%; }
-  .screen.active { display: flex; }
+.screen { display: none; flex-direction: column; height: 100%; }
+.screen.active { display: flex; }
 
-  /* ── SPLASH ── */
-  #screen-splash {
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    padding: 40px 32px;
-  }
-  .app-icon {
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-dim));
-    border-radius: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-  }
-  .app-title {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    text-align: center;
-  }
-  .app-sub {
-    font-size: 16px;
-    color: var(--text-muted);
-    text-align: center;
-    line-height: 1.5;
-    max-width: 280px;
-  }
-  .btn-primary {
-    width: 100%;
-    max-width: 340px;
-    padding: 20px;
-    background: var(--accent);
-    color: #000;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    letter-spacing: 0.2px;
-  }
-  .btn-primary:active { opacity: 0.85; transform: scale(0.98); }
-  .btn-secondary {
-    width: 100%;
-    max-width: 340px;
-    padding: 18px;
-    background: transparent;
-    color: var(--text);
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .btn-secondary:active { opacity: 0.7; }
+/* ── SPLASH ── */
+#screen-splash {
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 32px 28px 24px;
+  overflow-y: auto;
+}
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.logo-icon {
+  width: 90px; height: 90px;
+  background: var(--accent);
+  border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 44px;
+}
+.logo-title {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--text);
+}
+.logo-sub {
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.splash-desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+  max-width: 300px;
+}
+.btn-primary {
+  width: 100%; max-width: 340px;
+  padding: 20px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-primary:active { opacity: 0.85; transform: scale(0.98); }
+.btn-secondary {
+  width: 100%; max-width: 340px;
+  padding: 16px;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-secondary:active { opacity: 0.7; }
 
-  /* ── SETUP ── */
-  #screen-setup {
-    padding: 24px 24px 32px;
-    gap: 20px;
-    overflow-y: auto;
-  }
-  .screen-title {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-  }
-  .setup-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    padding: 20px;
-    border: 1px solid var(--border);
-  }
-  .setup-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 14px;
-  }
-  .angle-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .angle-display {
-    font-size: 52px;
-    font-weight: 700;
-    color: var(--accent);
-    min-width: 90px;
-    letter-spacing: -2px;
-  }
-  .angle-unit {
-    font-size: 20px;
-    color: var(--text-muted);
-    margin-top: 8px;
-  }
-  .stepper-col {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-  }
-  .stepper-btn {
-    padding: 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--text);
-    font-size: 28px;
-    font-weight: 300;
-    cursor: pointer;
-    text-align: center;
-    line-height: 1;
-  }
-  .stepper-btn:active { background: var(--accent); color: #000; }
+.credits-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  width: 100%; max-width: 340px;
+  text-align: center;
+}
+.credits-names {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.7;
+}
+.credits-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+.credits-inspired {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  line-height: 1.5;
+  font-style: italic;
+}
+.sensor-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+}
 
-  .window-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .window-item { text-align: center; }
-  .window-val {
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -1px;
-  }
-  .window-lbl {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-  }
-  .window-slider {
-    width: 100%;
-    margin-top: 8px;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 6px;
-    border-radius: 3px;
-    background: var(--surface);
-    outline: none;
-  }
-  .window-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--accent);
-    cursor: pointer;
-  }
+/* ── SETUP ── */
+#screen-setup {
+  padding: 20px 20px 28px;
+  gap: 16px;
+  overflow-y: auto;
+}
+.screen-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.screen-title { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+.app-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(0,212,170,0.12);
+  border-radius: 8px;
+  padding: 4px 10px;
+  letter-spacing: 0.5px;
+}
+.setup-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  border: 1px solid var(--border);
+}
+.setup-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+}
+.angle-row { display: flex; align-items: center; gap: 16px; }
+.angle-display {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--accent);
+  min-width: 90px;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.angle-unit { font-size: 18px; color: var(--text-muted); margin-top: 6px; }
+.stepper-col { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.stepper-row { display: flex; gap: 8px; }
+.stepper-btn {
+  flex: 1;
+  padding: 13px 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+}
+.stepper-btn:active { background: var(--accent); color: #000; }
 
-  .orient-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .orient-btn {
-    padding: 14px 8px;
-    background: var(--surface);
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    color: var(--text-muted);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    line-height: 1.3;
-  }
-  .orient-btn.selected {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(0,212,170,0.08);
-  }
+.window-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.window-item { text-align: center; }
+.window-val { font-size: 34px; font-weight: 700; letter-spacing: -1px; }
+.window-lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.window-slider {
+  width: 100%;
+  -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 3px;
+  background: var(--surface); outline: none;
+}
+.window-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
 
-  .sound-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .toggle-label { font-size: 16px; }
-  .toggle {
-    width: 56px;
-    height: 30px;
-    background: var(--surface);
-    border-radius: 15px;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    position: relative;
-    transition: background 0.2s;
-  }
-  .toggle.on { background: var(--accent); }
-  .toggle-thumb {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #fff;
-    transition: transform 0.2s;
-  }
-  .toggle.on .toggle-thumb { transform: translateX(26px); }
+.orient-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.orient-btn {
+  padding: 14px 8px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.5;
+}
+.orient-btn.selected { border-color: var(--accent); color: var(--accent); background: rgba(0,212,170,0.08); }
 
-  .setup-actions { display: flex; flex-direction: column; gap: 12px; margin-top: auto; }
+.sound-toggle { display: flex; align-items: center; justify-content: space-between; }
+.toggle-label { font-size: 16px; }
+.toggle {
+  width: 58px; height: 32px;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+.toggle.on { background: var(--accent); }
+.toggle-thumb {
+  position: absolute;
+  top: 4px; left: 4px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+.toggle.on .toggle-thumb { transform: translateX(26px); }
 
-  /* ── CALIBRATE ── */
-  #screen-calibrate {
-    align-items: center;
-    justify-content: center;
-    padding: 40px 32px;
-    gap: 28px;
-    text-align: center;
-  }
-  .cal-icon {
-    width: 120px;
-    height: 120px;
-    background: var(--card);
-    border-radius: 50%;
-    border: 3px solid var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 56px;
-  }
-  .cal-live {
-    font-size: 64px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -2px;
-  }
-  .cal-title { font-size: 24px; font-weight: 700; }
-  .cal-desc { font-size: 16px; color: var(--text-muted); line-height: 1.5; max-width: 300px; }
-  .cal-actions { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.volume-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+.vol-label { font-size: 14px; color: var(--text-muted); white-space: nowrap; }
+.window-slider.vol { flex: 1; }
+.vol-val { font-size: 14px; font-weight: 600; color: var(--text); min-width: 36px; text-align: right; }
 
-  /* ── MONITOR ── */
-  #screen-monitor {
-    padding: 16px 20px 24px;
-    gap: 14px;
-  }
+.setup-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
 
-  .monitor-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .monitor-title { font-size: 18px; font-weight: 600; }
-  .btn-icon {
-    width: 44px;
-    height: 44px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--text);
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .btn-icon:active { background: var(--surface); }
+/* ── CALIBRATE ── */
+#screen-calibrate {
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px;
+  gap: 22px;
+  text-align: center;
+}
+.cal-icon {
+  width: 110px; height: 110px;
+  background: var(--card);
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px;
+}
+.cal-live {
+  font-size: 72px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -3px;
+}
+.cal-title { font-size: 24px; font-weight: 700; }
+.cal-desc { font-size: 16px; color: var(--text-muted); line-height: 1.6; max-width: 300px; }
+.cal-actions { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.axis-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--card);
+  border-radius: 10px;
+  padding: 10px 14px;
+  line-height: 1.5;
+  border: 1px solid var(--border);
+  max-width: 320px;
+}
 
-  /* big angle display */
-  .angle-hero {
-    background: var(--card);
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    padding: 24px 20px 20px;
-    text-align: center;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .angle-hero-val {
-    font-size: 96px;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -4px;
-    transition: color 0.15s;
-  }
-  .angle-hero-unit { font-size: 24px; color: var(--text-muted); margin-top: 4px; }
-  .angle-hero-label {
-    font-size: 13px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 6px;
-  }
+/* ── MONITOR ── */
+#screen-monitor { padding: 14px 18px 20px; gap: 12px; }
 
-  /* status bar */
-  .status-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 14px 20px;
-    border-radius: var(--radius);
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    transition: background 0.15s, color 0.15s;
-    flex-shrink: 0;
-  }
-  .status-bar.in-range { background: rgba(46,213,115,0.15); color: var(--green); border: 2px solid rgba(46,213,115,0.3); }
-  .status-bar.out-range { background: rgba(255,71,87,0.15); color: var(--danger); border: 2px solid rgba(255,71,87,0.3); }
-  .status-bar.no-sensor { background: var(--card); color: var(--text-muted); border: 1px solid var(--border); }
+.monitor-header { display: flex; align-items: center; justify-content: space-between; }
+.monitor-brand { font-size: 20px; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; }
+.btn-icon {
+  width: 44px; height: 44px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-icon:active { background: var(--surface); }
 
-  /* arc gauge */
-  .gauge-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
-  }
-  #gauge-svg { width: 100%; max-width: 320px; overflow: visible; }
+.angle-hero {
+  background: var(--card);
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  padding: 20px 16px 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.angle-hero-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+.angle-hero-val {
+  font-size: 88px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -4px;
+  transition: color 0.15s;
+}
+.angle-hero-unit { font-size: 22px; color: var(--text-muted); margin-top: 2px; }
 
-  /* target info row */
-  .target-row {
-    display: flex;
-    gap: 12px;
-    flex-shrink: 0;
-  }
-  .target-chip {
-    flex: 1;
-    background: var(--card);
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    padding: 12px;
-    text-align: center;
-  }
-  .target-chip-val { font-size: 26px; font-weight: 700; color: var(--text); letter-spacing: -1px; }
-  .target-chip-lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px; margin-top: 2px; }
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.status-bar.in-range { background: rgba(46,213,115,0.15); color: var(--green); border: 2px solid rgba(46,213,115,0.3); }
+.status-bar.out-range { background: rgba(255,71,87,0.15); color: var(--danger); border: 2px solid rgba(255,71,87,0.35); }
+.status-bar.no-sensor { background: var(--card); color: var(--text-muted); border: 1px solid var(--border); font-size: 16px; }
 
-  /* pause button */
-  .btn-pause {
-    width: 100%;
-    padding: 18px;
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    background: transparent;
-    color: var(--text-muted);
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .btn-pause:active { border-color: var(--accent); color: var(--accent); }
+.gauge-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+#gauge-svg { width: 100%; max-width: 300px; overflow: visible; }
 
-  .sensor-note {
-    font-size: 13px;
-    color: var(--text-muted);
-    text-align: center;
-    padding: 4px 0;
-  }
+.target-row { display: flex; gap: 10px; flex-shrink: 0; }
+.target-chip {
+  flex: 1;
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 10px 6px;
+  text-align: center;
+}
+.target-chip-val { font-size: 24px; font-weight: 700; letter-spacing: -1px; }
+.target-chip-lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 1px; }
+
+.btn-pause {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.btn-pause.paused { border-color: var(--accent); color: var(--accent); }
+.btn-pause:active { opacity: 0.7; }
+
+/* ── ABOUT ── */
+#screen-about {
+  align-items: center;
+  justify-content: center;
+  padding: 36px 28px;
+  gap: 20px;
+  overflow-y: auto;
+  text-align: center;
+}
+.about-logo { font-size: 52px; }
+.about-title { font-size: 30px; font-weight: 800; color: var(--text); }
+.about-tagline { font-size: 14px; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+.about-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  width: 100%;
+  max-width: 340px;
+  text-align: left;
+}
+.about-section-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+.about-names { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.8; }
+.about-inspired {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-style: italic;
+}
+.about-oss {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.about-link { color: var(--accent); text-decoration: none; }
 </style>
 </head>
 <body>
@@ -414,37 +457,53 @@
 
   <!-- SPLASH -->
   <div id="screen-splash" class="screen active">
-    <div class="app-icon">📐</div>
-    <div>
-      <div class="app-title">Tibia<br>Inclinometer</div>
+    <div class="logo-wrap">
+      <div class="logo-icon">🦵</div>
+      <div class="logo-title">InJourney</div>
+      <div class="logo-sub">Tibial Inclinometer</div>
     </div>
-    <div class="app-sub">Strap your phone to the lower leg and monitor tibial angle with audio feedback.</div>
-    <div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;margin-top:12px;">
+    <div class="splash-desc">Strap your phone to the lower leg and monitor tibial angle in real time with audio feedback.</div>
+    <div style="display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;">
       <button class="btn-primary" onclick="goSetup()">Get Started</button>
-      <div class="sensor-note" id="sensor-status-msg">Checking sensor access...</div>
+      <button class="btn-secondary" onclick="goScreen('screen-about')">About &amp; Credits</button>
+      <div class="sensor-note" id="sensor-status-msg">Checking sensor...</div>
+    </div>
+    <div class="credits-box">
+      <div class="credits-label">Co-created by</div>
+      <div class="credits-names">Chloe Criss &amp; Josiah Bettenay</div>
+      <div class="credits-inspired">Inspired by the original Muzmo device<br>developed by Sally Horsley</div>
     </div>
   </div>
 
   <!-- SETUP -->
   <div id="screen-setup" class="screen">
-    <div class="screen-title">Settings</div>
+    <div class="screen-header">
+      <div class="screen-title">Settings</div>
+      <div class="app-badge">InJourney</div>
+    </div>
 
     <div class="setup-card">
-      <div class="setup-label">Target Angle</div>
+      <div class="setup-label">Target Tibial Angle</div>
       <div class="angle-row">
         <div>
           <div class="angle-display" id="target-display">10</div>
           <div class="angle-unit">degrees</div>
         </div>
         <div class="stepper-col">
-          <button class="stepper-btn" onclick="adjustTarget(5)">+5</button>
-          <button class="stepper-btn" onclick="adjustTarget(1)">+1</button>
-          <button class="stepper-btn" onclick="adjustTarget(-1)">−1</button>
-          <button class="stepper-btn" onclick="adjustTarget(-5)">−5</button>
+          <div class="stepper-row">
+            <button class="stepper-btn" onclick="adjustTarget(10)">+10</button>
+            <button class="stepper-btn" onclick="adjustTarget(5)">+5</button>
+            <button class="stepper-btn" onclick="adjustTarget(1)">+1</button>
+          </div>
+          <div class="stepper-row">
+            <button class="stepper-btn" onclick="adjustTarget(-10)">−10</button>
+            <button class="stepper-btn" onclick="adjustTarget(-5)">−5</button>
+            <button class="stepper-btn" onclick="adjustTarget(-1)">−1</button>
+          </div>
         </div>
       </div>
-      <div class="sensor-note" style="margin-top:10px;text-align:left;">
-        0° = vertical, positive = forward lean
+      <div class="sensor-note" style="margin-top:10px;text-align:left;font-size:12px;color:var(--text-muted);">
+        0° = phone perfectly upright. Positive = forward lean of tibia.
       </div>
     </div>
 
@@ -453,24 +512,24 @@
       <div class="window-grid">
         <div class="window-item">
           <div class="window-val" id="window-display">±5</div>
-          <div class="window-lbl">Degrees either side</div>
+          <div class="window-lbl">Degrees</div>
         </div>
-        <div class="window-item" style="display:flex;flex-direction:column;justify-content:center;">
-          <div class="window-lbl">Range</div>
-          <div class="window-val" style="font-size:22px;" id="range-display">5° – 15°</div>
+        <div class="window-item">
+          <div class="window-val" style="font-size:20px;" id="range-display">5° – 15°</div>
+          <div class="window-lbl">Allowed range</div>
         </div>
       </div>
-      <input type="range" class="window-slider" id="window-slider" min="1" max="20" value="5" oninput="updateWindow(this.value)">
+      <input type="range" class="window-slider" id="window-slider" min="1" max="20" value="5" step="1" oninput="updateWindow(this.value)">
     </div>
 
     <div class="setup-card">
-      <div class="setup-label">Phone Orientation on Leg</div>
+      <div class="setup-label">Phone Position on Leg</div>
       <div class="orient-options">
         <button class="orient-btn selected" id="orient-portrait" onclick="setOrient('portrait')">
-          📱 Portrait<br><span style="font-size:11px;font-weight:400;">Screen facing out</span>
+          📱 Portrait<br><span style="font-size:11px;font-weight:400;">Screen facing out,<br>top toward knee</span>
         </button>
         <button class="orient-btn" id="orient-landscape" onclick="setOrient('landscape')">
-          📱 Landscape<br><span style="font-size:11px;font-weight:400;">Screen facing side</span>
+          📱 Landscape<br><span style="font-size:11px;font-weight:400;">Screen facing side,<br>rotated 90°</span>
         </button>
       </div>
     </div>
@@ -483,35 +542,45 @@
           <div class="toggle-thumb"></div>
         </div>
       </div>
+      <div class="volume-row">
+        <span class="vol-label">Volume</span>
+        <input type="range" class="window-slider vol" id="vol-slider" min="1" max="10" value="9" step="1" oninput="updateVolume(this.value)">
+        <span class="vol-val" id="vol-display">9</span>
+      </div>
     </div>
 
     <div class="setup-actions">
       <button class="btn-primary" onclick="goCalibrate()">Next: Calibrate →</button>
-      <button class="btn-secondary" onclick="goScreen('screen-splash')">Back</button>
+      <button class="btn-secondary" onclick="goScreen('screen-splash')">← Back</button>
     </div>
   </div>
 
   <!-- CALIBRATE -->
   <div id="screen-calibrate" class="screen">
-    <div class="cal-icon">🦵</div>
-    <div class="cal-title">Zero Calibration</div>
-    <div class="cal-desc">Strap the phone to the outside of the lower leg. Stand with the leg in your desired reference position, then tap Calibrate.</div>
-    <div class="cal-live" id="cal-live-angle">--°</div>
-    <div class="cal-actions">
-      <button class="btn-primary" onclick="doCalibrate()">Calibrate Now</button>
-      <button class="btn-secondary" onclick="goSetup()">← Back to Settings</button>
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:22px;padding:32px 28px;text-align:center;">
+      <div class="cal-icon">🦵</div>
+      <div class="cal-title">Zero Calibration</div>
+      <div class="cal-desc">Strap the phone to the outside of the lower leg. Position the leg at your reference angle, then tap Calibrate.</div>
+      <div class="axis-note">
+        <strong>Measuring pitch (sagittal plane)</strong> — the forward/backward lean of the tibia. This is the correct axis for tibial inclination during gait.
+      </div>
+      <div class="cal-live" id="cal-live-angle">--°</div>
+      <div class="cal-actions">
+        <button class="btn-primary" onclick="doCalibrate()">Calibrate Now</button>
+        <button class="btn-secondary" onclick="goSetup()">← Back to Settings</button>
+      </div>
     </div>
   </div>
 
   <!-- MONITOR -->
   <div id="screen-monitor" class="screen">
     <div class="monitor-header">
-      <div class="monitor-title">Monitoring</div>
+      <div class="monitor-brand">InJourney</div>
       <button class="btn-icon" onclick="goSetup()" title="Settings">⚙</button>
     </div>
 
     <div class="angle-hero">
-      <div class="angle-hero-label">Current Tibial Angle</div>
+      <div class="angle-hero-label">Tibial Pitch Angle</div>
       <div class="angle-hero-val" id="live-angle-val">--</div>
       <div class="angle-hero-unit">degrees</div>
     </div>
@@ -522,7 +591,7 @@
     </div>
 
     <div class="gauge-wrap">
-      <svg id="gauge-svg" viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg"></svg>
+      <svg id="gauge-svg" viewBox="0 0 300 185" xmlns="http://www.w3.org/2000/svg"></svg>
     </div>
 
     <div class="target-row">
@@ -540,7 +609,46 @@
       </div>
     </div>
 
-    <button class="btn-pause" id="pause-btn" onclick="togglePause()">⏸ Pause</button>
+    <button class="btn-pause" id="pause-btn" onclick="togglePause()">⏸  Pause Monitoring</button>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="screen-about" class="screen">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px 24px;overflow-y:auto;flex:1;">
+      <div class="about-logo">🦵</div>
+      <div class="about-title">InJourney</div>
+      <div class="about-tagline">Tibial Inclinometer</div>
+
+      <div class="about-card">
+        <div class="about-section-label">Co-created by</div>
+        <div class="about-names">
+          Chloe Criss<br>
+          Josiah Bettenay
+        </div>
+        <div class="about-inspired">
+          Inspired by the original Muzmo device developed by Sally Horsley.
+        </div>
+      </div>
+
+      <div class="about-card">
+        <div class="about-section-label">Open Source</div>
+        <div class="about-oss">
+          Based on the InJourney open-source hospital pose tracking project.<br><br>
+          <a class="about-link" href="https://codeberg.org/itsj/InJourney" onclick="openLink('https://codeberg.org/itsj/InJourney')">codeberg.org/itsj/InJourney</a>
+        </div>
+      </div>
+
+      <div class="about-card">
+        <div class="about-section-label">How it works</div>
+        <div class="about-oss">
+          The phone's accelerometer measures <strong>pitch</strong> — forward/backward lean in the sagittal plane. This is the correct axis for tibial inclination during gait analysis. Strap the phone vertically to the outside of the lower leg with the top toward the knee.
+        </div>
+      </div>
+
+      <div style="width:100%;max-width:340px;">
+        <button class="btn-primary" onclick="goScreen('screen-splash')">← Back</button>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -551,47 +659,55 @@ let targetAngle = 10;
 let windowDeg = 5;
 let orientation = 'portrait';
 let soundOn = true;
+let volume = 0.9;
 let calibrationOffset = 0;
 let rawAngle = 0;
 let paused = false;
 let inRange = false;
-let sensorAvailable = false;
-let lastBeepTime = 0;
-let audioCtx = null;
+let sensorStarted = false;
 let beepInterval = null;
-let sensorListener = null;
+let audioCtx = null;
 
 // ── AUDIO ──
-function getAudioCtx() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
+function getCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
   return audioCtx;
 }
 
-function beep(freq, duration, vol) {
+// Loud square-wave alarm tone
+function playTone(freq, duration, vol, type) {
   try {
-    const ctx = getAudioCtx();
+    const ctx = getCtx();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
+    // Compressor to maximise loudness without clipping
+    const comp = ctx.createDynamicsCompressor();
+    comp.threshold.value = -6;
+    comp.ratio.value = 20;
     osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.type = 'sine';
+    gain.connect(comp);
+    comp.connect(ctx.destination);
+    osc.type = type || 'square';
     osc.frequency.setValueAtTime(freq, ctx.currentTime);
-    gain.gain.setValueAtTime(vol || 0.4, ctx.currentTime);
+    gain.gain.setValueAtTime(vol, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + duration);
+    osc.stop(ctx.currentTime + duration + 0.02);
   } catch(e) {}
 }
 
-function playInRange() { beep(880, 0.12, 0.3); }
+function playInRange() {
+  // Pleasant ascending chime — you're in range
+  playTone(880, 0.1, volume * 0.6, 'sine');
+  setTimeout(() => playTone(1100, 0.15, volume * 0.5, 'sine'), 90);
+}
+
 function playOutRange() {
-  beep(330, 0.18, 0.5);
-  setTimeout(() => beep(280, 0.22, 0.5), 200);
+  // Harsh loud square-wave double-burst alarm
+  playTone(320, 0.22, volume, 'square');
+  setTimeout(() => playTone(260, 0.28, volume, 'square'), 240);
+  setTimeout(() => playTone(320, 0.22, volume, 'sawtooth'), 520);
 }
 
 function startBeeping() {
@@ -600,7 +716,7 @@ function startBeeping() {
   playOutRange();
   beepInterval = setInterval(() => {
     if (!inRange && soundOn && !paused) playOutRange();
-  }, 1500);
+  }, 1400);
 }
 
 function stopBeeping() {
@@ -609,7 +725,7 @@ function stopBeeping() {
 
 // ── SETTINGS ──
 function adjustTarget(delta) {
-  targetAngle = Math.max(-45, Math.min(45, targetAngle + delta));
+  targetAngle = Math.max(-60, Math.min(60, targetAngle + delta));
   document.getElementById('target-display').textContent = targetAngle;
   updateRangeDisplay();
 }
@@ -633,72 +749,55 @@ function setOrient(o) {
 
 function toggleSound() {
   soundOn = !soundOn;
-  const t = document.getElementById('sound-toggle');
-  t.classList.toggle('on', soundOn);
+  document.getElementById('sound-toggle').classList.toggle('on', soundOn);
   if (!soundOn) stopBeeping();
 }
 
-// ── ANGLE CALC ──
+function updateVolume(val) {
+  volume = parseInt(val) / 10;
+  document.getElementById('vol-display').textContent = val;
+}
+
+// ── ANGLE CALCULATION ──
+// We use PITCH (beta) — the sagittal plane lean.
+// beta = 0 when phone is flat/horizontal, 90 when perfectly upright.
+// For a phone strapped vertically to the shin:
+//   0° calibration = reference position
+//   positive = forward lean
 function calcAngle(event) {
-  // DeviceOrientation gives alpha/beta/gamma
-  // beta = front-back tilt, gamma = left-right tilt
-  // For phone strapped vertically to leg: use beta (portrait) or gamma (landscape)
-  let angle;
   if (orientation === 'portrait') {
-    angle = event.beta;   // -180 to 180, 0 = face up, 90 = vertical
+    return event.beta !== null ? event.beta : rawAngle;
   } else {
-    angle = event.gamma;  // -90 to 90
+    // Landscape: phone rotated 90°, use gamma
+    return event.gamma !== null ? event.gamma : rawAngle;
   }
-  if (angle === null || angle === undefined) return rawAngle;
-  return angle;
-}
-
-function getRawAngle(event) {
-  rawAngle = calcAngle(event);
-  return rawAngle;
-}
-
-function getCalibratedAngle() {
-  return rawAngle - calibrationOffset;
 }
 
 // ── SENSOR ──
 function startSensor() {
-  if (sensorListener) {
-    window.removeEventListener('deviceorientation', sensorListener);
-  }
+  if (sensorStarted) return;
+  sensorStarted = true;
 
-  sensorListener = (event) => {
-    const raw = calcAngle(event);
-    rawAngle = raw;
+  window.addEventListener('deviceorientation', (event) => {
+    rawAngle = calcAngle(event);
+    const calAngle = rawAngle - calibrationOffset;
 
-    const calAngle = raw - calibrationOffset;
-    const screen = document.getElementById('screen-monitor');
-    const calScreen = document.getElementById('screen-calibrate');
-
-    if (calScreen.classList.contains('active')) {
-      const el = document.getElementById('cal-live-angle');
-      if (el) el.textContent = raw.toFixed(1) + '°';
+    // Update calibration screen live readout
+    const calEl = document.getElementById('cal-live-angle');
+    if (calEl && document.getElementById('screen-calibrate').classList.contains('active')) {
+      calEl.textContent = rawAngle.toFixed(1) + '°';
     }
 
-    if (screen.classList.contains('active') && !paused) {
+    // Update monitor
+    if (document.getElementById('screen-monitor').classList.contains('active') && !paused) {
       updateMonitor(calAngle);
     }
-  };
-
-  window.addEventListener('deviceorientation', sensorListener, true);
-  sensorAvailable = true;
+  }, true);
 }
 
-function updateMonitor(calAngle) {
-  const val = calAngle;
-  const valStr = val.toFixed(1);
-  const heroEl = document.getElementById('live-angle-val');
-  const statusEl = document.getElementById('status-bar');
-  const iconEl = document.getElementById('status-icon');
-  const textEl = document.getElementById('status-text');
-
-  heroEl.textContent = valStr;
+function updateMonitor(angle) {
+  const val = parseFloat(angle.toFixed(1));
+  document.getElementById('live-angle-val').textContent = val.toFixed(1);
 
   const within = val >= (targetAngle - windowDeg) && val <= (targetAngle + windowDeg);
 
@@ -712,15 +811,20 @@ function updateMonitor(calAngle) {
     }
   }
 
+  const heroEl = document.getElementById('live-angle-val');
+  const statusEl = document.getElementById('status-bar');
+  const iconEl = document.getElementById('status-icon');
+  const textEl = document.getElementById('status-text');
+
   if (inRange) {
     heroEl.style.color = 'var(--green)';
     statusEl.className = 'status-bar in-range';
     iconEl.textContent = '✓';
     textEl.textContent = 'In Range';
   } else {
-    const diff = val - targetAngle;
     heroEl.style.color = 'var(--danger)';
     statusEl.className = 'status-bar out-range';
+    const diff = val - targetAngle;
     iconEl.textContent = '!';
     textEl.textContent = diff > 0 ? 'Too Far Forward' : 'Too Far Back';
   }
@@ -733,42 +837,48 @@ function drawGauge(currentAngle) {
   const svg = document.getElementById('gauge-svg');
   if (!svg) return;
 
-  const cx = 150, cy = 170, r = 130;
-  const minA = -20, maxA = 80;
-  const target = targetAngle;
-  const winMin = target - windowDeg;
-  const winMax = target + windowDeg;
+  const cx = 150, cy = 175, r = 130;
+  const minA = -30, maxA = 60;
+  const winMin = targetAngle - windowDeg;
+  const winMax = targetAngle + windowDeg;
 
-  function degToRad(d) { return (d - 90) * Math.PI / 180; }
-  function polarX(angle, radius) { return cx + radius * Math.cos(degToRad(angle)); }
-  function polarY(angle, radius) { return cy + radius * Math.sin(degToRad(angle)); }
-  function arcPath(a1, a2, r1, r2) {
-    const x1 = polarX(a1, r2), y1 = polarY(a1, r2);
-    const x2 = polarX(a2, r2), y2 = polarY(a2, r2);
-    const x3 = polarX(a2, r1), y3 = polarY(a2, r1);
-    const x4 = polarX(a1, r1), y4 = polarY(a1, r1);
+  function degToSvg(d) { return (d - 90) * Math.PI / 180; }
+  function px(a, radius) { return cx + radius * Math.cos(degToSvg(a)); }
+  function py(a, radius) { return cy + radius * Math.sin(degToSvg(a)); }
+
+  function arc(a1, a2, r1, r2) {
     const large = (a2 - a1) > 180 ? 1 : 0;
-    return `M${x1},${y1} A${r2},${r2} 0 ${large},1 ${x2},${y2} L${x3},${y3} A${r1},${r1} 0 ${large},0 ${x4},${y4} Z`;
+    return `M${px(a1,r2)},${py(a1,r2)} A${r2},${r2} 0 ${large},1 ${px(a2,r2)},${py(a2,r2)}
+            L${px(a2,r1)},${py(a2,r1)} A${r1},${r1} 0 ${large},0 ${px(a1,r1)},${py(a1,r1)} Z`;
   }
 
-  const clampedAngle = Math.max(minA - 5, Math.min(maxA + 5, currentAngle));
-  const needleAngle = clampedAngle;
+  const clamped = Math.max(minA - 5, Math.min(maxA + 5, currentAngle));
+  const isIn = currentAngle >= winMin && currentAngle <= winMax;
+  const needleColor = isIn ? '#2ed573' : '#ff4757';
+
+  const ticks = [];
+  for (let a = minA; a <= maxA; a += 5) {
+    const big = a % 10 === 0;
+    const len = big ? 16 : 8;
+    const x1 = px(a, 130), y1 = py(a, 130);
+    const x2 = px(a, 130 - len), y2 = py(a, 130 - len);
+    ticks.push(`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#2a2a4a" stroke-width="${big ? 1.5 : 0.8}"/>`);
+    if (big) {
+      const lx = px(a, 130 - len - 16).toFixed(1);
+      const ly = py(a, 130 - len - 16).toFixed(1);
+      ticks.push(`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" fill="#555575" font-size="11" font-family="-apple-system,sans-serif">${a}°</text>`);
+    }
+  }
 
   svg.innerHTML = `
-    <path d="${arcPath(minA, maxA, 110, 130)}" fill="#1a1a2e" stroke="#2a2a40" stroke-width="0.5"/>
-    <path d="${arcPath(Math.max(minA, winMin), Math.min(maxA, winMax), 110, 130)}" fill="rgba(46,213,115,0.18)" stroke="none"/>
-    <path d="${arcPath(Math.max(minA, winMin), Math.min(maxA, winMax), 110, 130)}" fill="none" stroke="rgba(46,213,115,0.5)" stroke-width="1"/>
-    ${Array.from({length: (maxA - minA) / 5 + 1}, (_, i) => {
-      const a = minA + i * 5;
-      const big = a % 10 === 0;
-      const len = big ? 16 : 8;
-      return `<line x1="${polarX(a, 130)}" y1="${polarY(a, 130)}" x2="${polarX(a, 130 - len)}" y2="${polarY(a, 130 - len)}" stroke="#3a3a5a" stroke-width="${big ? 1.5 : 0.8}"/>
-        ${big ? `<text x="${polarX(a, 130 - len - 14)}" y="${polarY(a, 130 - len - 14)}" text-anchor="middle" dominant-baseline="middle" fill="#6a6a8a" font-size="10" font-family="-apple-system,sans-serif">${a}°</text>` : ''}`;
-    }).join('')}
-    <line x1="${polarX(target, 112)}" y1="${polarY(target, 112)}" x2="${polarX(target, 128)}" y2="${polarY(target, 128)}" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="${cx}" y1="${cy}" x2="${polarX(needleAngle, 108)}" y2="${polarY(needleAngle, 108)}" stroke="${currentAngle >= winMin && currentAngle <= winMax ? '#2ed573' : '#ff4757'}" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy}" r="10" fill="#1a1a2e" stroke="#3a3a5a" stroke-width="1.5"/>
-    <circle cx="${cx}" cy="${cy}" r="4" fill="${currentAngle >= winMin && currentAngle <= winMax ? '#2ed573' : '#ff4757'}"/>
+    <path d="${arc(minA, maxA, 110, 130)}" fill="#12122a" stroke="#1e1e3a" stroke-width="0.5"/>
+    <path d="${arc(Math.max(minA, winMin), Math.min(maxA, winMax), 110, 130)}" fill="rgba(46,213,115,0.15)" stroke="none"/>
+    <path d="${arc(Math.max(minA, winMin), Math.min(maxA, winMax), 110, 130)}" fill="none" stroke="rgba(46,213,115,0.45)" stroke-width="1"/>
+    ${ticks.join('')}
+    <line x1="${px(targetAngle, 112).toFixed(1)}" y1="${py(targetAngle, 112).toFixed(1)}" x2="${px(targetAngle, 129).toFixed(1)}" y2="${py(targetAngle, 129).toFixed(1)}" stroke="#00d4aa" stroke-width="3" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${px(clamped, 106).toFixed(1)}" y2="${py(clamped, 106).toFixed(1)}" stroke="${needleColor}" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="${cx}" cy="${cy}" r="11" fill="#0f0f1a" stroke="#2a2a4a" stroke-width="1.5"/>
+    <circle cx="${cx}" cy="${cy}" r="5" fill="${needleColor}"/>
   `;
 }
 
@@ -785,42 +895,31 @@ function goSetup() {
 }
 
 async function goCalibrate() {
-  goScreen('screen-calibrate');
   await requestSensor();
+  goScreen('screen-calibrate');
 }
 
 function goMonitor() {
-  const chipT = document.getElementById('chip-target');
-  const chipMin = document.getElementById('chip-min');
-  const chipMax = document.getElementById('chip-max');
-  chipT.textContent = targetAngle + '°';
-  chipMin.textContent = (targetAngle - windowDeg) + '°';
-  chipMax.textContent = (targetAngle + windowDeg) + '°';
+  document.getElementById('chip-target').textContent = targetAngle + '°';
+  document.getElementById('chip-min').textContent = (targetAngle - windowDeg) + '°';
+  document.getElementById('chip-max').textContent = (targetAngle + windowDeg) + '°';
   paused = false;
-  document.getElementById('pause-btn').textContent = '⏸ Pause';
   inRange = false;
+  const pb = document.getElementById('pause-btn');
+  pb.textContent = '⏸  Pause Monitoring';
+  pb.classList.remove('paused');
   drawGauge(targetAngle);
   goScreen('screen-monitor');
 }
 
-function goScreen_splash() { goScreen('screen-splash'); }
-
-async function goSetupFromSplash() { goScreen('screen-setup'); }
-
 async function requestSensor() {
-  // iOS 13+ requires permission for DeviceOrientationEvent
   if (typeof DeviceOrientationEvent !== 'undefined' &&
       typeof DeviceOrientationEvent.requestPermission === 'function') {
     try {
       const resp = await DeviceOrientationEvent.requestPermission();
-      if (resp === 'granted') {
-        startSensor();
-      } else {
-        alert('Motion sensor permission denied. Please allow motion access in Settings > Safari > Motion & Orientation Access.');
-      }
-    } catch(e) {
-      alert('Could not request sensor permission: ' + e.message);
-    }
+      if (resp === 'granted') { startSensor(); }
+      else { alert('Motion sensor permission denied.\n\nGo to Settings → Safari → Motion & Orientation Access and enable it.'); }
+    } catch(e) { startSensor(); }
   } else {
     startSensor();
   }
@@ -828,10 +927,11 @@ async function requestSensor() {
 
 function doCalibrate() {
   calibrationOffset = rawAngle;
-  beep(660, 0.08);
-  setTimeout(() => beep(880, 0.12), 100);
-  setTimeout(() => beep(1100, 0.2), 200);
-  goMonitor();
+  // Triple ascending chime = calibrated!
+  playTone(660, 0.1, volume * 0.6, 'sine');
+  setTimeout(() => playTone(880, 0.1, volume * 0.6, 'sine'), 110);
+  setTimeout(() => playTone(1100, 0.18, volume * 0.7, 'sine'), 220);
+  setTimeout(() => goMonitor(), 400);
 }
 
 function togglePause() {
@@ -839,58 +939,51 @@ function togglePause() {
   const btn = document.getElementById('pause-btn');
   if (paused) {
     stopBeeping();
-    btn.textContent = '▶ Resume';
-    btn.style.borderColor = 'var(--accent)';
-    btn.style.color = 'var(--accent)';
+    btn.textContent = '▶  Resume Monitoring';
+    btn.classList.add('paused');
   } else {
-    btn.textContent = '⏸ Pause';
-    btn.style.borderColor = '';
-    btn.style.color = '';
+    btn.textContent = '⏸  Pause Monitoring';
+    btn.classList.remove('paused');
     inRange = false;
   }
 }
 
-// ── INIT ──
-async function goSetup() {
-  goScreen('screen-setup');
-  updateRangeDisplay();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  updateRangeDisplay();
-
-  const msg = document.getElementById('sensor-status-msg');
-  if (typeof DeviceOrientationEvent !== 'undefined') {
-    msg.textContent = 'Motion sensor detected on this device ✓';
-    msg.style.color = '#2ed573';
-  } else {
-    msg.textContent = 'No motion sensor found. Use on a phone.';
-    msg.style.color = '#ff4757';
-  }
-  drawGauge(10);
-});
-
-// Wake lock attempt (keep screen on)
+// ── WAKE LOCK ──
 async function tryWakeLock() {
   if ('wakeLock' in navigator) {
     try { await navigator.wakeLock.request('screen'); } catch(e) {}
   }
 }
+document.addEventListener('visibilitychange', () => { if (!document.hidden) tryWakeLock(); });
 
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) tryWakeLock();
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  updateRangeDisplay();
+  drawGauge(10);
+  tryWakeLock();
+
+  const msg = document.getElementById('sensor-status-msg');
+  if (typeof DeviceOrientationEvent !== 'undefined') {
+    msg.textContent = '✓ Motion sensor detected';
+    msg.style.color = '#2ed573';
+  } else {
+    msg.textContent = '✗ No motion sensor — use on a smartphone';
+    msg.style.color = '#ff4757';
+  }
 });
 
+// Expose to HTML onclick
 window.goSetup = goSetup;
+window.goCalibrate = goCalibrate;
+window.goMonitor = goMonitor;
+window.goScreen = goScreen;
 window.adjustTarget = adjustTarget;
 window.updateWindow = updateWindow;
 window.setOrient = setOrient;
 window.toggleSound = toggleSound;
-window.goCalibrate = goCalibrate;
+window.updateVolume = updateVolume;
 window.doCalibrate = doCalibrate;
-window.goMonitor = goMonitor;
 window.togglePause = togglePause;
-window.goScreen = goScreen;
 </script>
 </body>
 </html>
